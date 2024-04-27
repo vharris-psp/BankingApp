@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>Welcome to the Banking App</h2>
+
+<div>
+    <h3>Manage Records</h3>
+    <ul>
+        <li><a asp-controller="Person" asp-action="Index">View People</a></li>
+        <li><a asp-controller="Person" asp-action="Create">Create New Person</a></li>
+        <li><a asp-controller="Account" asp-action="Index">View Accounts</a></li>
+        <li><a asp-controller="Account" asp-action="Create">Create New Account</a></li>
+        <li><a asp-controller="Transaction" asp-action="Index">View Transactions</a></li>
+        <!-- Add links for other actions related to transactions as needed -->
+    </ul>
+</div>

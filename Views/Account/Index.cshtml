@@ -1,0 +1,28 @@
+@model IEnumerable<BankingApp.Models.Account>
+
+<h2>Accounts</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Balance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+            <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.Balance)</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.AccountId">Details</a>
+            </td>
+        </tr>
+        }
+    }
+    </tbody>
+</table>

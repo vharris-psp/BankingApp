@@ -1,0 +1,35 @@
+@model IEnumerable<BankingApp.Models.Person>
+
+<h2>People</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Number of Accounts</th>
+            <th>Total Investments</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var person in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => person.Name)</td>
+                <td>@person.StreetNumber @person.StreetName, @person.City, @person.Zip</td>
+                <td>@(person.Accounts?.Count ?? 0)</td>
+                <td>$@person.InvestmentsTotal.ToString("N2")</td>
+            <td>
+                
+            </td>
+        </tr>
+        }
+    }else{ 
+        <tr> 
+            <td colspan="4">No people found.</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+using Microsoft.AspNetCore.Mvc;
+using BankingApp.Data;
+using BankingApp.Models;
+using System.Threading.Tasks;
+
+namespace BankingApp.Controllers
+{
+    public class TransactionController : Controller
+    {
+        private readonly AppDbContext _context;
+
+        public TransactionController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Transactions/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Transactions/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("TransactionId,AccountId,Amount,TransactionDate,Type")] Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(transaction);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index), "Accounts"); // Redirect to accounts index after creation
+            }
+            return View(transaction);
+        }
+
+        // Additional actions can be implemented here...
+    }
+}
